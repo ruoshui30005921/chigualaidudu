@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Lisp--扫描凸包算法, 吃瓜癞嘟嘟">
+    <meta name="keywords" content="日常看小代码（1）, 吃瓜癞嘟嘟">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Lisp--扫描凸包算法 | 吃瓜癞嘟嘟</title>
+    <title>日常看小代码（1） | 吃瓜癞嘟嘟</title>
     <link rel="icon" type="image/png" href="/medias/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Lisp--扫描凸包算法</h1>
+                    <h1 class="description center-align post-title">日常看小代码（1）</h1>
                 </div>
             </div>
         </div>
@@ -442,8 +442,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Lisp/" class="post-category">
-                                Lisp
+                            <a href="/categories/Lisp%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="post-category">
+                                Lisp学习记录
                             </a>
                         
                     </div>
@@ -455,7 +455,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-08-09
+                    2020-08-13
                 </div>
                 
 
@@ -471,13 +471,9 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>这个代码是好几天前网上摘抄的一段代码。<br>转自<a target="_blank" rel="noopener" href="https://www.highflybird.com/blog/?p=507">Hi,flying bird</a></p>
-<h3 id="先上代码"><a href="#先上代码" class="headerlink" title="先上代码!!"></a>先上代码!!</h3><font face = "黑体" color = red>
+                <h2 id="代码一"><a href="#代码一" class="headerlink" title="代码一"></a><strong>代码一</strong></h2><h2 id="角度阵列程序（Angle-array-routine）-比AutoCAD的阵列容易得多"><a href="#角度阵列程序（Angle-array-routine）-比AutoCAD的阵列容易得多" class="headerlink" title="角度阵列程序（Angle array routine）,比AutoCAD的阵列容易得多"></a><strong>角度阵列程序（Angle array routine）,比AutoCAD的阵列容易得多</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">  (defun C:AAR ( &#x2F; ss ang bp cnt dist d)</span><br><span class="line">    (cond</span><br><span class="line">      (  (setq ss (ssget))</span><br><span class="line">        (initget 1)     ;禁止用户空输入</span><br><span class="line">        (setq bp (getpoint &quot;\n基点： &quot;))</span><br><span class="line">        (initget 1)</span><br><span class="line">        (setq ang</span><br><span class="line">           (getangle bp &quot;\n阵列方向： &quot;))</span><br><span class="line">         (initget 7)</span><br><span class="line">         (setq dist</span><br><span class="line">           (getdist &quot;\n对象间距： &quot;))</span><br><span class="line">         (initget 7)</span><br><span class="line">         (setq cnt (getint &quot;\n对象个数： &quot;))</span><br><span class="line">         (setq d 0.0)</span><br><span class="line">         (setvar &quot;cmdecho&quot; 0)</span><br><span class="line">         (command &quot;_.undo&quot; &quot;_g&quot;</span><br><span class="line">                  &quot;_.copy&quot; ss &quot;&quot; &quot;_m&quot; bp)</span><br><span class="line">         (repeat (1- cnt)</span><br><span class="line">           (command</span><br><span class="line">               (polar bp ang (setq d (+ d dist)))))</span><br><span class="line">               (command &quot;&quot; &quot;_.undo&quot; &quot;_e&quot;)</span><br><span class="line">        )</span><br><span class="line">      )</span><br><span class="line">      (princ)</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line">(defun C:test1 (&#x2F; fil sel t0 ptlist pp 2Pi)</span><br><span class="line">  (setq fil &#39;((0 . &quot;POINT,LINE,POLYLINE,LWPOLYLINE&quot;)))</span><br><span class="line">  (setq sel (ssget fil))                ;选择点集</span><br><span class="line">  (setq ptlist (getpt sel))             ;构造点集</span><br><span class="line">  (setq t0 (getvar &quot;TDUSRTIMER&quot;))       ;开始计时</span><br><span class="line">  (setq pp (Graham-scan ptlist))        ;求凸包</span><br><span class="line">  (princ &quot;n用时&quot;)</span><br><span class="line">  (princ (* (- (getvar &quot;TDUSRTIMER&quot;) t0) 86400)) ;结束计时</span><br><span class="line">  (princ &quot;秒&quot;)</span><br><span class="line">  (if (null pp)</span><br><span class="line">    (alert &quot;点的有效数目太小，请重新输入!&quot;)</span><br><span class="line">    (MAKE-POLY PP)</span><br><span class="line">  )</span><br><span class="line">  (gc)</span><br><span class="line">  (princ)</span><br><span class="line">)</span><br><span class="line">;;;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">;;;程序主段，可以单独成为函数</span><br><span class="line">;;;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">(defun Graham-scan (ptlist &#x2F; hullpt maxXpt sortPt P Q)</span><br><span class="line">  (if (&lt; (length ptlist) 3)             ;3点以下</span><br><span class="line">    ptlist                              ;是本集合</span><br><span class="line">    (progn</span><br><span class="line">      (setq maxXpt (assoc (apply &#39;max (mapcar &#39;car ptlist)) ptlist))    ;最右边的点</span><br><span class="line">      (setq sortPt (sort-by-angle-distance ptlist maxXpt))              ;分类点集</span><br><span class="line">      (setq hullPt (list (cadr sortPt) maxXpt))                         ;开始的两点      </span><br><span class="line">      (foreach n (cddr sortPt)                                          ;从第3点开始</span><br><span class="line">        (setq hullPt (cons n HullPt))                                   ;把Pi加入到凸集</span><br><span class="line">        (setq P (cadr hullPt))                                          ;Pi-1</span><br><span class="line">        (setq Q (caddr hullPt))                                         ;Pi-2</span><br><span class="line">        (while (and q (&gt; (det n P Q) -1e-6))                            ;如果左转</span><br><span class="line">          (setq hullPt (cons n (cddr hullPt)))                          ;删除Pi-1点</span><br><span class="line">          (setq P (cadr hullPt))                                        ;得到新的Pi-1点</span><br><span class="line">          (setq Q (caddr hullPt))                                       ;得到新的Pi-2点</span><br><span class="line">        )</span><br><span class="line">      )</span><br><span class="line">      (reverse hullpt)                                                  ;返回凸集</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">)</span><br><span class="line">;;;以最下面的点为基点，按照角度和距离分类点集</span><br><span class="line">(defun sort-by-angle-distance (ptlist pt &#x2F; Ang1 Ang2)</span><br><span class="line">  (vl-sort ptlist</span><br><span class="line">           (function</span><br><span class="line">             (lambda (e1 e2)</span><br><span class="line">               (setq ang1 (angle pt e1))</span><br><span class="line">               (setq ang2 (angle pt e2))</span><br><span class="line">               (if (&#x3D; ang1 ang2)</span><br><span class="line">                 (&lt; (distance pt e1) (distance pt e2))</span><br><span class="line">                 (&lt; ang1 ang2)</span><br><span class="line">               )</span><br><span class="line">             )</span><br><span class="line">           )</span><br><span class="line">  )</span><br><span class="line">)</span><br><span class="line">(defun sort-by-angle (ptlist pt &#x2F; Ang1 Ang2)</span><br><span class="line">  (vl-sort ptlist</span><br><span class="line">           (function</span><br><span class="line">             (lambda (e1 e2) (&lt; (angle pt e1) (angle pt e2)))</span><br><span class="line">           )</span><br><span class="line">  )</span><br><span class="line">)</span><br><span class="line">(defun sort-XY (ptlist)</span><br><span class="line">  (vl-sort ptlist</span><br><span class="line">           (function</span><br><span class="line">             (lambda (e1 e2)</span><br><span class="line">               (if (equal (cadr e1) (cadr e2) 1e-8)</span><br><span class="line">                 (&gt; (car e1) (car e2))</span><br><span class="line">                 (&lt; (cadr e1) (cadr e2))</span><br><span class="line">               )</span><br><span class="line">             )</span><br><span class="line">           )</span><br><span class="line">  )</span><br><span class="line">)</span><br><span class="line">;;定义三点的行列式,即三点之倍面积</span><br><span class="line">(defun det (p1 p2 p3 &#x2F; x2 y2)</span><br><span class="line">  (setq x2 (car p2)</span><br><span class="line">        y2 (cadr p2)</span><br><span class="line">  )</span><br><span class="line">  (- (* (- x2 (car p3)) (- y2 (cadr p1)))</span><br><span class="line">     (* (- x2 (car p1)) (- y2 (cadr p3)))</span><br><span class="line">  )</span><br><span class="line">)</span><br><span class="line">;;;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">;;;程序主段结束</span><br><span class="line">;;;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">;;;取点函数1</span><br><span class="line">(defun getpt1 (ss &#x2F; i listpp a b c d)</span><br><span class="line">  (setq i 0)</span><br><span class="line">  (if ss</span><br><span class="line">    (repeat (sslength ss)</span><br><span class="line">      (setq a (ssname ss i))</span><br><span class="line">      (setq b (entget a))</span><br><span class="line">      (setq c (cdr (assoc 10 b)))</span><br><span class="line">      (setq c (list (car c) (cadr c)))</span><br><span class="line">      (setq listpp (cons c listpp))</span><br><span class="line">      (setq i (1+ i))</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  listpp</span><br><span class="line">)</span><br><span class="line">;;;取点函数2</span><br><span class="line">(defun getpt (ss &#x2F; i listpp a b c d)</span><br><span class="line">  (setq i 0)</span><br><span class="line">  (if ss</span><br><span class="line">    (repeat (sslength ss)</span><br><span class="line">      (setq a (ssname ss i))</span><br><span class="line">      (setq b (entget a))</span><br><span class="line">      (setq ename (cdr (assoc 0 b)))</span><br><span class="line">      (cond</span><br><span class="line">        ((&#x3D; ename &quot;LWPOLYLINE&quot;)</span><br><span class="line">         (setq c (get-LWpolyline-vertexs b))</span><br><span class="line">         (setq listpp (append c listpp))</span><br><span class="line">        )</span><br><span class="line">        ((&#x3D; ename &quot;LINE&quot;)</span><br><span class="line">         (setq c (cdr (assoc 10 b)))</span><br><span class="line">         (setq d (cdr (assoc 11 b)))</span><br><span class="line">         (setq c (list (car c) (cadr c)))</span><br><span class="line">         (setq d (list (car d) (cadr d)))</span><br><span class="line">         (setq listpp (cons c listpp))</span><br><span class="line">         (setq listpp (cons d listpp))</span><br><span class="line">        )</span><br><span class="line">        ((&#x3D; ename &quot;POINT&quot;)</span><br><span class="line">         (setq c (cdr (assoc 10 b)))</span><br><span class="line">         (setq c (list (car c) (cadr c)))</span><br><span class="line">         (setq listpp (cons c listpp))</span><br><span class="line">        )</span><br><span class="line">      )</span><br><span class="line">      (setq i (1+ i))</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  listpp</span><br><span class="line">)</span><br><span class="line">(DEFUN make-poly (pp &#x2F; X)</span><br><span class="line">  (entmake                              ;画凸包</span><br><span class="line">    (append</span><br><span class="line">      &#39;((0 . &quot;LWPOLYLINE&quot;)</span><br><span class="line">        (100 . &quot;AcDbEntity&quot;)</span><br><span class="line">        (100 . &quot;AcDbPolyline&quot;)</span><br><span class="line">       )</span><br><span class="line">      (list (cons 90 (length pp)))      ;顶点个数</span><br><span class="line">      (mapcar</span><br><span class="line">        (function (lambda (x) (cons 10 x)))</span><br><span class="line">        pp</span><br><span class="line">      )                                 ;多段线顶点</span><br><span class="line">      (list (cons 70 1))                ;闭合的</span><br><span class="line">      (list (cons 62 1))                ;红色的</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">)</span><br><span class="line">;;取得多边形顶点</span><br><span class="line">(defun get-LWpolyline-vertexs (entlst &#x2F; n lst)</span><br><span class="line">  (foreach n entlst</span><br><span class="line">    (if (&#x3D; (car n) 10)</span><br><span class="line">      (setq lst (cons (cdr n) lst))</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">  (reverse lst)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</font>
-
-<p>未完待续</p>
+<p>####关于关于initget的限定作用<br><img src="https://github.com/ruoshui30005921/ruoshui30005921.github.io/images/lisp/initgetlimit.png" alt="initgetlimit"></p>
 
             </div>
             <hr/>
@@ -503,7 +499,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="chigualaidudu.github.io/2020/08/09/Lisp%E6%89%AB%E6%8F%8F%E6%B3%95%E5%87%B8%E5%8C%85/">chigualaidudu.github.io/2020/08/09/Lisp%E6%89%AB%E6%8F%8F%E6%B3%95%E5%87%B8%E5%8C%85/</a>
+                    <a href="chigualaidudu.github.io/2020/08/13/%E6%97%A5%E5%B8%B8%E4%BB%A3%E7%A0%81%E4%B8%80/">chigualaidudu.github.io/2020/08/13/%E6%97%A5%E5%B8%B8%E4%BB%A3%E7%A0%81%E4%B8%80/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -715,31 +711,31 @@
                 <i class="far fa-dot-circle"></i>&nbsp;Current
             </div>
             <div class="card">
-                <a href="/2020/08/09/Lisp%E6%89%AB%E6%8F%8F%E6%B3%95%E5%87%B8%E5%8C%85/">
+                <a href="/2020/08/13/%E6%97%A5%E5%B8%B8%E4%BB%A3%E7%A0%81%E4%B8%80/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Lisp--扫描凸包算法">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="日常看小代码（1）">
                         
-                        <span class="card-title">Lisp--扫描凸包算法</span>
+                        <span class="card-title">日常看小代码（1）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            仔细学习一下扫描凸包算法一下下
+                            lisp--日常看小代码
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-13
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Lisp/" class="post-category">
-                                    Lisp
+                            <a href="/categories/Lisp%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="post-category">
+                                    Lisp学习记录
                                 </a>
                             
                             
