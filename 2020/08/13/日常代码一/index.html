@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.0.0"></head>
+<meta name="generator" content="Hexo 5.0.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -471,9 +471,33 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="代码一"><a href="#代码一" class="headerlink" title="代码一"></a><strong>代码一</strong></h2><h2 id="角度阵列程序（Angle-array-routine）-比AutoCAD的阵列容易得多"><a href="#角度阵列程序（Angle-array-routine）-比AutoCAD的阵列容易得多" class="headerlink" title="角度阵列程序（Angle array routine）,比AutoCAD的阵列容易得多"></a><strong>角度阵列程序（Angle array routine）,比AutoCAD的阵列容易得多</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">  (defun C:AAR ( &#x2F; ss ang bp cnt dist d)</span><br><span class="line">    (cond</span><br><span class="line">      (  (setq ss (ssget))</span><br><span class="line">        (initget 1)     ;禁止用户空输入</span><br><span class="line">        (setq bp (getpoint &quot;\n基点： &quot;))</span><br><span class="line">        (initget 1)</span><br><span class="line">        (setq ang</span><br><span class="line">           (getangle bp &quot;\n阵列方向： &quot;))</span><br><span class="line">         (initget 7)</span><br><span class="line">         (setq dist</span><br><span class="line">           (getdist &quot;\n对象间距： &quot;))</span><br><span class="line">         (initget 7)</span><br><span class="line">         (setq cnt (getint &quot;\n对象个数： &quot;))</span><br><span class="line">         (setq d 0.0)</span><br><span class="line">         (setvar &quot;cmdecho&quot; 0)</span><br><span class="line">         (command &quot;_.undo&quot; &quot;_g&quot;</span><br><span class="line">                  &quot;_.copy&quot; ss &quot;&quot; &quot;_m&quot; bp)</span><br><span class="line">         (repeat (1- cnt)</span><br><span class="line">           (command</span><br><span class="line">               (polar bp ang (setq d (+ d dist)))))</span><br><span class="line">               (command &quot;&quot; &quot;_.undo&quot; &quot;_e&quot;)</span><br><span class="line">        )</span><br><span class="line">      )</span><br><span class="line">      (princ)</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>####关于关于initget的限定作用<br><img src="https://github.com/ruoshui30005921/ruoshui30005921.github.io/images/lisp/initgetlimit.png" alt="initgetlimit"></p>
+                <h2 id="代码一"><a href="#代码一" class="headerlink" title="代码一"></a><strong>代码一</strong></h2><h2 id="角度阵列程序（Angle-array-routine）-比AutoCAD的阵列容易得多"><a href="#角度阵列程序（Angle-array-routine）-比AutoCAD的阵列容易得多" class="headerlink" title="角度阵列程序（Angle array routine）,比AutoCAD的阵列容易得多"></a><strong>角度阵列程序（Angle array routine）,比AutoCAD的阵列容易得多</strong></h2><pre><code>  (defun C:AAR ( / ss ang bp cnt dist d)
+    (cond
+      (  (setq ss (ssget))
+        (initget 1)     ;禁止用户空输入
+        (setq bp (getpoint &quot;\n基点： &quot;))
+        (initget 1)
+        (setq ang
+           (getangle bp &quot;\n阵列方向： &quot;))
+         (initget 7)
+         (setq dist
+           (getdist &quot;\n对象间距： &quot;))
+         (initget 7)
+         (setq cnt (getint &quot;\n对象个数： &quot;))
+         (setq d 0.0)
+         (setvar &quot;cmdecho&quot; 0)
+         (command &quot;_.undo&quot; &quot;_g&quot;
+                  &quot;_.copy&quot; ss &quot;&quot; &quot;_m&quot; bp)
+         (repeat (1- cnt)
+           (command
+               (polar bp ang (setq d (+ d dist)))))
+               (command &quot;&quot; &quot;_.undo&quot; &quot;_e&quot;)
+        )
+      )
+      (princ)
+)
+</code></pre>
+<p>####关于关于initget的限定作用<br><img src="http://github.com/ruoshui30005921/ruoshui30005921.github.io/images/lisp/initgetlimit.png" alt="initgetlimit"></p>
 
             </div>
             <hr/>
